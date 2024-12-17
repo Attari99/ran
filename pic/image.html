@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Slider</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: Arial, sans-serif; margin: 0; background-color: #f4f4f4; }
+
+    /* Slider container */
+    .slideshow-container {
+      position: relative;
+      max-width: 700px;
+      margin: auto;
+      overflow: hidden;
+    }
+
+    /* Slides (hidden by default) */
+    .mySlides {
+      display: none;
+      position: relative;
+    }
+
+    /* Images inside slides */
+    .mySlides img {
+      width: 100%;
+      height: auto;
+    }
+
+    /* Caption text */
+    .text {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      color: #fff;
+      font-size: 16px;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 8px 12px;
+      border-radius: 5px;
+    }
+
+    /* Dots (pagination) */
+    .dot-container {
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    .dot {
+      cursor: pointer;
+      height: 12px;
+      width: 12px;
+      margin: 0 4px;
+      background-color: #bbb;
+      border-radius: 50%;
+      display: inline-block;
+      transition: background-color 0.3s;
+    }
+
+    .dot.active, .dot:hover {
+      background-color: #717171;
+    }
+
+    /* Navigation Arrows */
+    .prev, .next {
+      cursor: pointer;
+      position: absolute;
+      top: 50%;
+      width: auto;
+      padding: 16px;
+      color: white;
+      font-weight: bold;
+      font-size: 18px;
+      transition: background 0.3s ease;
+      border-radius: 3px;
+      user-select: none;
+      transform: translateY(-50%);
+    }
+
+    .next {
+      right: 0;
+    }
+
+    .prev {
+      left: 0;
+    }
+
+    .prev:hover, .next:hover {
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+  </style>
+</head>
+<body>
+
+<!-- Slider Container -->
+<div class="slideshow-container">
+
+  <!-- Slide 1 -->
+  <div class="mySlides">
+    <img src="a-stylized-human-skull-and-ribcage-illustration-in-a-circular-frame-free-vector.jpg" alt="Slide 1">
+    <div class="text">Caption for Slide 1</div>
+  </div>
+
+  <!-- Slide 2 -->
+  <div class="mySlides">
+    <img src="slider_background.jpg" alt="Slide 2">
+    <div class="text">Caption for Slide 2</div>
+  </div>
+
+  <!-- Slide 3 -->
+  <div class="mySlides">
+    <img src="vc.jpg" alt="Slide 3">
+    <div class="text">Caption for Slide 3</div>
+  </div>
+
+  <!-- Navigation Arrows -->
+  <a class="prev" onclick="plusSlides(-1)">❮</a>
+  <a class="next" onclick="plusSlides(1)">❯</a>
+</div>
+
+<!-- Pagination Dots -->
+<div class="dot-container">
+  <span class="dot" onclick="currentSlide(1)"></span>
+  <span class="dot" onclick="currentSlide(2)"></span>
+  <span class="dot" onclick="currentSlide(3)"></span>
+</div>
+
+<!-- JavaScript for Slider -->
+<script>
+  let slideIndex = 1;
+  showSlides(slideIndex);
+
+  // Next/previous controls
+  function plusSlides(n) {
+    showSlides(slideIndex += n);
+  }
+
+  // Thumbnail dot controls
+  function currentSlide(n) {
+    showSlides(slideIndex = n);
+  }
+
+  function showSlides(n) {
+    let i;
+    const slides = document.getElementsByClassName("mySlides");
+    const dots = document.getElementsByClassName("dot");
+
+    if (n > slides.length) { slideIndex = 1 }
+    if (n < 1) { slideIndex = slides.length }
+
+    for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+    }
+
+    for (i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace(" active", "");
+    }
+
+    slides[slideIndex - 1].style.display = "block";
+    dots[slideIndex - 1].className += " active";
+  }
+</script>
+
+</body>
+</html>
